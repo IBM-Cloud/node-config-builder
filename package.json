@@ -1,0 +1,31 @@
+{
+  "name": "configurator",
+  "version": "1.0.0",
+  "description": "Build static, environment-specific configurations for your app.",
+  "main": "index.js",
+  "bin": "./bin/configurator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhamann/node-configurator.git"
+  },
+  "keywords": [
+    "config",
+    "configuration",
+    "properties"
+  ],
+  "author": "Matt Hamann <mhamann@us.ibm.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mhamann/node-configurator/issues"
+  },
+  "homepage": "https://github.com/mhamann/node-configurator#readme",
+  "dependencies": {
+    "dot-object": "^0.11.0",
+    "nconf": "^0.7.1",
+    "properties": "^1.2.1",
+    "underscore": "^1.8.3"
+  }
+}
