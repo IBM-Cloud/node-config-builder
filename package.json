@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": "./bin/configurator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -t 30000 -s 5000 test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +23,17 @@
   },
   "homepage": "https://github.com/mhamann/node-configurator#readme",
   "dependencies": {
-    "dot-object": "^0.11.0",
+    "debug": "^2.2.0",
+    "graphlib": "^1.0.4",
+    "lodash.assign": "^3.2.0",
+    "lodash.omit": "^3.1.0",
     "nconf": "^0.7.1",
     "properties": "^1.2.1",
-    "underscore": "^1.8.3"
+    "traverse": "^0.6.6"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "istanbul": "^0.3.15",
+    "mocha": "^2.2.5"
   }
 }
