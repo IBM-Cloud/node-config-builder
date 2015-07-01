@@ -2,7 +2,7 @@
 Build static, environment-specific configurations for your app.
 
 ## What does this thing do, anyway?
-configurator is "yet another config utility" or YACF. Its purpose is to build and output configuration files
+configurator is "yet another config utility" (or YACF, if you like acronyms). Its purpose is to build and output configuration files
 created using one or more base configurations, properties, or environment variables.
 
 While other configuration packages seek to build configurations at runtime, this package assumes that you want
@@ -19,3 +19,4 @@ config or property files that need to be consumed elsewhere. In each case, every
 to the same set of inputs (if you so desire), thus enabling config re-use across a variety of situtations.
 
 ## An example
+
