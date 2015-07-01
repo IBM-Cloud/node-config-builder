@@ -1,0 +1,6 @@
+image: dockerfile/node
+git:
+  path: github.ibm.com/mhamann/node-configurator
+script:
+  - npm install
+  - npm test
