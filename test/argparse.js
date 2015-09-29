@@ -1,73 +1,41 @@
-require('mocha');
-var expect = require('chai').expect;
 var argparse = require('../lib/argparse');
+var test = require('tape');
 
-describe('argparse', function() {
+test('parse zero arguments', function(t) {
+	t.plan(3);
+	
+	var obj = argparse.parse();
+	
+	t.equal(typeof obj, 'object', 'obj should be an object');
+	t.ok(Array.isArray(obj._), 'obj._ should be an array');
+	t.equal(obj.count, 0, 'obj.count should be length 0');
+});
 
-    describe('#parse()', function() {
+test('parse 3 un-named arguments', function(t) {
+	t.plan(1);
+	
+	var obj = argparse.parse(['value1', 'value2', 'value3']);
+	
+	t.equal(obj._.length, 3, 'obj._ should have length 3');
+});
 
-        it('should return an object with a single empty array for ._', function() {
+test('parse multiple options with single arguments', function(t) {
+	t.plan(3);
+	
+	var obj = argparse.parse(['--arg1', 'value1', '--arg2', 'value2', '--arg3', 'value3']);
+	
+	t.deepEqual(obj.arg1, ['value1'], 'obj.arg1 should === value1');
+	t.deepEqual(obj.arg2, ['value2'], 'obj.arg2 should === value2');
+	t.deepEqual(obj.arg3, ['value3'], 'obj.arg3 should === value3');
+});
 
-            var obj = argparse.parse();
-
-            expect(obj).to.be.an('object');
-            expect(obj._).to.be.an('array');
-            expect(obj._).to.have.length(0);
-
-        });
-
-        it('should return an object with a single array for ._ with 3 values', function() {
-
-            var obj = argparse.parse(['value1', 'value2', 'value3']);
-
-            expect(obj).to.be.an('object');
-            expect(obj._).to.be.an('array');
-            expect(obj._).to.have.length(3);
-
-        });
-
-        it('should return an object with several simple key/value pairs', function() {
-
-            var obj = argparse.parse(['--arg1', 'value1', '--arg2', 'value2', '--arg3', 'value3']);
-
-            expect(obj).to.be.an('object');
-            expect(obj._).to.be.an('array');
-            expect(obj._).to.have.length(0);
-
-            expect(obj.arg1).to.be.an('array');
-            expect(obj.arg1).to.have.length(1);
-
-            expect(obj.arg2).to.be.an('array');
-            expect(obj.arg2).to.have.length(1);
-
-            expect(obj.arg3).to.be.an('array');
-            expect(obj.arg3).to.have.length(1);
-
-        });
-
-        it('should return an object with several complex key/value pairs', function() {
-
-            var obj = argparse.parse(['--arg1', 'value1.1', 'value1.2', 'value1.3',
+test('parse multiple options with multiple arguments', function(t) {
+	t.plan(2);
+	
+	var obj = argparse.parse(['--arg1', 'value1.1', 'value1.2', 'value1.3',
                 '--arg2', 'value2', 'abcdefg', 'someothervalue', 'valuewithchars@()#(G#@@@@))!@#$%^&*()_',
                 '--arg3', 'value3', 'value4']);
-
-            expect(obj).to.be.an('object');
-            expect(obj._).to.be.an('array');
-            expect(obj._).to.have.length(0);
-
-            expect(obj.arg1).to.be.an('array');
-            expect(obj.arg1).to.have.length(3);
-
-            expect(obj.arg2).to.be.an('array');
-            expect(obj.arg2).to.have.length(4);
-
-            expect(obj.arg3).to.be.an('array');
-            expect(obj.arg3).to.have.length(2);
-
-            expect(obj.arg2[3]).to.equal('valuewithchars@()#(G#@@@@))!@#$%^&*()_');
-
-        });
-
-    });
-
+                
+    t.deepEqual(obj.arg1, ['value1.1', 'value1.2', 'value1.3'], 'obj.arg1 should be an array with 3 elements');
+    t.equal(obj.arg2[3], 'valuewithchars@()#(G#@@@@))!@#$%^&*()_', 'obj.arg2[3] should === valuewithchars@()#(G#@@@@))!@#$%^&*()_');
 });

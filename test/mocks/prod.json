@@ -1,0 +1,7 @@
+{
+    "env": "prod",
+    "db_config": {
+        "host": "db-prod.mycompany.com",
+        "password": "myreallysecureprodpassword"
+    }
+}

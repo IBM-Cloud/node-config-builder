@@ -1,0 +1,15 @@
+{
+    "env": "${target.env}",
+    "db_config": {
+        "host": "localhost",
+        "port": 5432,
+        "username": "dbuser",
+        "password": "myreallysecurepassword"
+    },
+
+    "services": {
+        "database": "appdb-${env}.${app.domain}",
+        "backend": "appbackend-${env}.${app.domain}",
+        "console": "appconsole-${env}.${app.domain}"
+    }
+}
