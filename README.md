@@ -53,24 +53,24 @@ Let's assume we have a base configuration that's used in development with some v
 **base.json**
 ```
 {
-"env": "local",
-"db_config": {
-"host": "localhost",
-"port": 5432,
-"username": "dbuser",
-"password": "myreallysecurepassword"
-}
+  "env": "local",
+  "db_config": {
+    "host": "localhost",
+    "port": 5432,
+    "username": "dbuser",
+    "password": "myreallysecurepassword"
+  }
 }
 ```
 
 **prod.json**
 ```
 {
-"env": "prod",
-"db_config": {
-"host": "db-prod.mycompany.com",
-"password": "myreallysecureprodpassword"
-}
+  "env": "prod",
+  "db_config": {
+    "host": "db-prod.mycompany.com",
+    "password": "myreallysecureprodpassword"
+  }
 }
 ```
 For development, we can just use `base.json` on its own, but when we head to production, we want to overlay 
@@ -82,13 +82,13 @@ $ configurator --configFiles base.json prod.json --configOut config.json
 
 Result:
 {
-"env": "prod",
-"db_config": {
-"host": "db-prod.mycompany.com",
-"port": 5432,
-"username": "dbuser",
-"password": "myreallysecureprodpassword"
-}
+  "env": "prod",
+  "db_config": {
+    "host": "db-prod.mycompany.com",
+    "port": 5432,
+    "username": "dbuser",
+    "password": "myreallysecureprodpassword"
+  }
 }
 ```
 
@@ -117,19 +117,19 @@ Here's an updated `base.json`:
 **base.json**
 ```
 {
-"env": "${target.env}",
-"db_config": {
-"host": "localhost",
-"port": 5432,
-"username": "dbuser",
-"password": "myreallysecurepassword"
+  "env": "${target.env}",
+  "db_config": {
+    "host": "localhost",
+    "port": 5432,
+    "username": "dbuser",
+    "password": "myreallysecurepassword"
 },
 
-"services": {
-"database": "appdb-${target.env}.mycompany.com",
-"backend": "appbackend-${target.env}.mycompany.com",
-"console": "appconsole-${target.env}.mycompany.com",
-}
+  "services": {
+    "database": "appdb-${target.env}.mycompany.com",
+    "backend": "appbackend-${target.env}.mycompany.com",
+    "console": "appconsole-${target.env}.mycompany.com",
+  }
 }
 ```
 
@@ -146,19 +146,19 @@ $ configurator --configFiles base.json prod.json --propertyFiles prod.properties
 
 Result:
 {
-"env": "prod",
-"db_config": {
-"host": "db-prod.mycompany.com",
-"port": 5432,
-"username": "dbuser",
-"password": "myreallysecureprodpassword"
-},
+  "env": "prod",
+  "db_config": {
+    "host": "db-prod.mycompany.com",
+    "port": 5432,
+    "username": "dbuser",
+    "password": "myreallysecureprodpassword"
+  },
 
-"services": {
-"database": "appdb-prod.mycompany.com",
-"backend": "appbackend-prod.mycompany.com",
-"console": "appconsole-prod.mycompany.com",
-}
+  "services": {
+    "database": "appdb-prod.mycompany.com",
+    "backend": "appbackend-prod.mycompany.com",
+    "console": "appconsole-prod.mycompany.com"
+  }
 }
 ```
 
@@ -174,19 +174,19 @@ For example, we can streamline our base configuration file by referencing the in
 **base.json**
 ```
 {
-"env": "${target.env}",
-"db_config": {
-"host": "localhost",
-"port": 5432,
-"username": "dbuser",
-"password": "myreallysecurepassword"
-},
+  "env": "${target.env}",
+  "db_config": {
+    "host": "localhost",
+    "port": 5432,
+    "username": "dbuser",
+    "password": "myreallysecurepassword"
+  },
 
-"services": {
-"database": "appdb-${env}.mycompany.com",
-"backend": "appbackend-${env}.mycompany.com",
-"console": "appconsole-${env}.mycompany.com",
-}
+  "services": {
+    "database": "appdb-${env}.mycompany.com",
+    "backend": "appbackend-${env}.mycompany.com",
+    "console": "appconsole-${env}.mycompany.com"
+  }
 }
 ```
 
@@ -201,13 +201,13 @@ Consider this CloudFoundry deployment manifest represented as yaml:
 ```
 applications:
 - disk_quota: 1024M
-host:       ${app.host_name}
-name:       My cool app
-command:    null
-path:       .
-domain:     mycompany.com
-instances:  ${app.num_instances}
-memory:     256M
+  host:       ${app.host_name}
+  name:       My cool app
+  command:    null
+  path:       .
+  domain:     mycompany.com
+  instances:  ${app.num_instances}
+  memory:     256M
 ```
 
 If we have a property file (or even a hierarchy in our primary config) that includes values for the two `app` namespaced properties, we can output a deployment-ready version of this file.
