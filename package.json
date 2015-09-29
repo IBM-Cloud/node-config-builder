@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": "./bin/configurator.js",
   "scripts": {
-    "test": "node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -t 30000 -s 5000 test/**/*.js"
+    "test": "tape test/**/*.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -23,17 +23,21 @@
   },
   "homepage": "https://github.com/mhamann/node-configurator#readme",
   "dependencies": {
+    "cliui": "^2.1.0",
     "debug": "^2.2.0",
     "graphlib": "^1.0.4",
     "lodash.assign": "^3.2.0",
     "lodash.omit": "^3.1.0",
     "nconf": "^0.7.1",
     "properties": "^1.2.1",
-    "traverse": "^0.6.6"
+    "traverse": "^0.6.6",
+    "window-size": "^0.1.2"
   },
   "devDependencies": {
     "chai": "^3.0.0",
     "istanbul": "^0.3.15",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "tap-spec": "^4.1.0",
+    "tape": "^4.2.0"
   }
 }

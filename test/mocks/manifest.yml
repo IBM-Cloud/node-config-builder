@@ -1,0 +1,9 @@
+applications:
+- disk_quota: 1024M
+  host:       ${app.host}
+  name:       My sample app
+  command:    null
+  path:       .
+  domain:     ${app.domain}
+  instances:  ${app.numInstances}
+  memory:     256M
