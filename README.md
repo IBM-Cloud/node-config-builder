@@ -2,8 +2,11 @@
 Build static, environment-specific configurations for your app.
 
 ## What does this thing do, anyway?
-configurator is "yet another config utility" (or YACF, if you like acronyms). Its purpose is to build and output configuration files
-created using one or more base configurations, properties, or environment variables.
+configurator is "yet another config utility" (or YACF, if you like acronyms). Its purpose is to build 
+and output configuration files created using one or more base configurations, properties, or environment variables.
+
+Configurations are hierarchical in nature--that is, they can stack on each other, overriding previous values
+depending on the target environment. Properties act the same way. More about this in a bit.
 
 While other configuration packages seek to build configurations at runtime, this package assumes that you want
 to build all--or at least most--of your configuration at *deploy* time. This can help you avoid many
@@ -18,6 +21,13 @@ manifest in YAML. Generate a `Dockerfile` that uses a specific environmental reg
 config or property files that need to be consumed elsewhere. In each case, every generated file has access
 to the same set of inputs (if you so desire), thus enabling config re-use across a variety of situtations.
 If it comes in a string, it can be configured.
+
+## In a nutshell, you can:
+- Build a configuration hierarchy into one config file.
+- Substitute hierarchical property references into the configuration or any string-based file.
+
+This can help ensure separation of duties, since sensitive values (e.g. production passwords) can be stored
+by an ops team and later integrated into the configuration during some step of a deployment.
 
 ## Installation
 To install, just run `npm install -g configurator`.
