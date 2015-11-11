@@ -1,0 +1,9 @@
+{
+	"circular1": {
+		"key": "${circular2.key}"
+	},
+	
+	"circular2": {
+		"key": "${circular1.key}"
+	}
+}
