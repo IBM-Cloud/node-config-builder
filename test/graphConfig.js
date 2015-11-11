@@ -92,13 +92,12 @@ test('throw an error if circular dependencies are found in config', function(t) 
 				__dirname + '/mocks/circular.json'
 			]
 		});
-		
-	try {
-		config = GraphConfig(layers.config, layers.props).build();
-		t.fail('Graph failed to catch circular references in config');
-	} catch(ex) {
-		t.pass('Circular references in config were caught');
+
+	function buildConfig() {
+		GraphConfig(layers.config, layers.props).build()
 	}
+
+	t.throws(buildConfig, 'Circular reference exception thrown');
 	
 	t.end();
 	
@@ -116,13 +115,12 @@ test('throw an error if circular dependencies are found between config and prope
 				__dirname + '/mocks/config-prop-cycle.properties'
 			]
 		});
-		
-	try {
-		config = GraphConfig(layers.config, layers.props).build();
-		t.fail('Graph failed to catch circular references between config and properties');
-	} catch(ex) {
-		t.pass('Circular references between config and properties were caught');
+
+	function buildConfig() {
+		GraphConfig(layers.config, layers.props).build();
 	}
+
+	t.throws(buildConfig, 'Circular reference exception thrown');
 	
 	t.end();
 
