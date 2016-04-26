@@ -64,14 +64,14 @@ if (typeof options.help !== 'undefined' || options.count === 0) {
 		ui = require('cliui')({
 			width: wsize.width ? Math.min(80, wsize.width) : null
 		});
-		
+
 	ui.div('Usage: $0 [--option] [values]');
-	
+
 	ui.div({
 	  text: 'Options (all are optional):',
 	  padding: [1, 0, 0, 0]
 	});
-	
+
 	ui.div({
     	text: "--configFiles",
     	width: 40,
@@ -80,7 +80,7 @@ if (typeof options.help !== 'undefined' || options.count === 0) {
 		text: "One or more JSON files to be compiled hierarchically. Load priority is last to first.",
 	    width: 60
   	});
-  	
+
   	ui.div({
     	text: "--propertyFiles",
     	width: 40,
@@ -89,7 +89,7 @@ if (typeof options.help !== 'undefined' || options.count === 0) {
 		text: "One or more key/value files to be compiled hierarchically. Load priority is last to first.",
 	    width: 60
   	});
-  	
+
   	ui.div({
     	text: "--configOut",
     	width: 40,
@@ -98,7 +98,7 @@ if (typeof options.help !== 'undefined' || options.count === 0) {
 		text: "File or directory to which the compiled JSON config file should be written.",
 	    width: 60
   	});
-  	
+
   	ui.div({
     	text: "--propertiesOut",
     	width: 40,
@@ -107,7 +107,7 @@ if (typeof options.help !== 'undefined' || options.count === 0) {
 		text: "File or directory to which a compiled .properties file should be written.",
 	    width: 60
   	});
-  	
+
   	ui.div({
     	text: "--filePairs",
     	width: 40,
@@ -116,8 +116,8 @@ if (typeof options.help !== 'undefined' || options.count === 0) {
 		text: "A pair of files consisting of an input file that property references and an output file or directory to which the result should be written. Properties will be resolved via the config and property files specified above.",
 	    width: 60
   	});
-  	
-  	console.log(ui.toString());  	
+
+  	console.log(ui.toString());
 	return process.exit(0);
 }
 
@@ -152,7 +152,7 @@ delete config._;
 
 console.log('Building configs...');
 
-var configurator = Configurator(config, props);
+var configurator = Configurator.createConfig(config, props);
 config = configurator.build();
 var configStats = configurator.getStats();
 
