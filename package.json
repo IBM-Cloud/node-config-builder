@@ -1,6 +1,6 @@
 {
   "name": "config-builder",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Build static, environment-specific configurations for your app.",
   "main": "index.js",
   "bin": "./bin/config-builder.js",
