@@ -28,7 +28,7 @@
     "graphlib": "^2.1.7",
     "lodash.assign": "^3.2.0",
     "lodash.omit": "^3.1.0",
-    "nconf": "^0.7.1",
+    "nconf": "^0.11.4",
     "properties": "^1.2.1",
     "traverse": "^0.6.6",
     "window-size": "^0.1.2"
